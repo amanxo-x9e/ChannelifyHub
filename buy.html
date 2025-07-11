@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete Your Purchase</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d1117;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .upi {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    code {
+      background-color: #1c1f26;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #1c1f26;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+    .success-message {
+      color: #34d399;
+      padding-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🔥</div>
+    <h1>Complete Your Purchase</h1>
+    <p class="upi">UPI ID: <code>9012775446@fam</code></p>
+
+    <div>
+      <label for="email">Enter your email:</label>
+      <input type="email" id="email" placeholder="you@example.com" />
+      <button id="doneBtn">Done</button>
+      <p class="success-message" id="successMsg">
+        Now you own 41.5M views and 18,000+ subscribers. Congratulations!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const emailInput = document.getElementById('email');
+    const doneBtn = document.getElementById('doneBtn');
+    const successMsg = document.getElementById('successMsg');
+
+    emailInput.addEventListener('input', () => {
+      if (emailInput.value.trim() !== '') {
+        doneBtn.style.display = 'block';
+      } else {
+        doneBtn.style.display = 'none';
+        successMsg.style.display = 'none';
+      }
+    });
+
+    doneBtn.addEventListener('click', () => {
+      successMsg.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

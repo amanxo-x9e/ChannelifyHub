@@ -92,10 +92,16 @@
   const emailInput = document.getElementById('email');
   const doneBtn = document.getElementById('doneBtn');
   const successMsg = document.getElementById('successMsg');
+  const couponInput = document.getElementById('coupon');
+  const couponResult = document.getElementById('couponResult');
 
   function isValidGmail(email) {
     const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     return gmailPattern.test(email.trim());
+  }
+
+  function isValidCoupon(code) {
+    return code.trim().toUpperCase() === 'AU400';
   }
 
   emailInput.addEventListener('input', () => {
@@ -105,6 +111,20 @@
     } else {
       doneBtn.style.display = 'none';
       successMsg.style.display = 'none';
+    }
+  });
+
+  couponInput.addEventListener('input', () => {
+    const code = couponInput.value.trim();
+    if (isValidCoupon(code)) {
+      couponResult.style.display = 'block';
+      couponResult.textContent = "✅ Coupon applied! Final price: ₹4,100 (₹400 OFF)";
+    } else if (code.length > 0) {
+      couponResult.style.display = 'block';
+      couponResult.textContent = "❌ Invalid coupon code";
+      couponResult.style.color = '#f87171'; // red for error
+    } else {
+      couponResult.style.display = 'none';
     }
   });
 

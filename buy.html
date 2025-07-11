@@ -45,7 +45,8 @@
       margin-bottom: 6px;
       text-align: left;
     }
-    input[type="email"] {
+    input[type="email"],
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       background-color: #1c1f26;
@@ -70,6 +71,12 @@
       padding-top: 10px;
       display: none;
     }
+    .coupon-result {
+      font-size: 0.9rem;
+      margin-top: -6px;
+      margin-bottom: 14px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -78,59 +85,70 @@
     <h1>Complete Your Purchase</h1>
     <p class="upi">UPI ID: <code>9012775446@fam</code></p>
 
+    <!-- Coupon Code Section -->
+    <div>
+      <label for="coupon">Enter Coupon Code:</label>
+      <input type="text" id="coupon" placeholder="e.g. AU400" />
+      <p class="coupon-result" id="couponResult"></p>
+    </div>
+
+    <!-- Email Section -->
     <div>
       <label for="email">Enter your email:</label>
-      <input type="email" id="email" placeholder="you@example.com" />
+      <input type="email" id="email" placeholder="you@gmail.com" />
       <button id="doneBtn">Done</button>
       <p class="success-message" id="successMsg">
-        🎉 Congratulations! You now officially own a YouTube channel with 41.5M views and over 18,000 subscribers. We’ll contact you shortly via the email you provided. Get ready to go viral! 🚀
+        Now you own 41.5M views and 18,000+ subscribers. Congratulations!
       </p>
     </div>
   </div>
 
- <script>
-  const emailInput = document.getElementById('email');
-  const doneBtn = document.getElementById('doneBtn');
-  const successMsg = document.getElementById('successMsg');
-  const couponInput = document.getElementById('coupon');
-  const couponResult = document.getElementById('couponResult');
+  <script>
+    const emailInput = document.getElementById('email');
+    const couponInput = document.getElementById('coupon');
+    const doneBtn = document.getElementById('doneBtn');
+    const successMsg = document.getElementById('successMsg');
+    const couponResult = document.getElementById('couponResult');
 
-  function isValidGmail(email) {
-    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    return gmailPattern.test(email.trim());
-  }
-
-  function isValidCoupon(code) {
-    return code.trim().toUpperCase() === 'AU400';
-  }
-
-  emailInput.addEventListener('input', () => {
-    const email = emailInput.value.trim();
-    if (isValidGmail(email)) {
-      doneBtn.style.display = 'block';
-    } else {
-      doneBtn.style.display = 'none';
-      successMsg.style.display = 'none';
+    function isValidGmail(email) {
+      const pattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      return pattern.test(email);
     }
-  });
 
-  couponInput.addEventListener('input', () => {
-    const code = couponInput.value.trim();
-    if (isValidCoupon(code)) {
-      couponResult.style.display = 'block';
-      couponResult.textContent = "✅ Coupon applied! Final price: ₹4,100 (₹400 OFF)";
-    } else if (code.length > 0) {
-      couponResult.style.display = 'block';
-      couponResult.textContent = "❌ Invalid coupon code";
-      couponResult.style.color = '#f87171'; // red for error
-    } else {
-      couponResult.style.display = 'none';
+    function isValidCoupon(code) {
+      return code.trim().toUpperCase() === 'AU400';
     }
-  });
 
-  doneBtn.addEventListener('click', () => {
-    successMsg.style.display = 'block';
-  });
- </script>
+    function updateButtonVisibility() {
+      const email = emailInput.value.trim();
+      if (isValidGmail(email)) {
+        doneBtn.style.display = 'block';
+      } else {
+        doneBtn.style.display = 'none';
+        successMsg.style.display = 'none';
+      }
+    }
+
+    emailInput.addEventListener('input', updateButtonVisibility);
+
+    couponInput.addEventListener('input', () => {
+      const code = couponInput.value.trim();
+      if (isValidCoupon(code)) {
+        couponResult.style.display = 'block';
+        couponResult.style.color = '#facc15'; // yellow
+        couponResult.textContent = "✅ Coupon applied! Final price: ₹4,100 (₹400 OFF)";
+      } else if (code.length > 0) {
+        couponResult.style.display = 'block';
+        couponResult.style.color = '#f87171'; // red
+        couponResult.textContent = "❌ Invalid coupon code";
+      } else {
+        couponResult.style.display = 'none';
+      }
+    });
+
+    doneBtn.addEventListener('click', () => {
+      successMsg.style.display = 'block';
+    });
+  </script>
 </body>
 </html>

@@ -88,23 +88,29 @@
     </div>
   </div>
 
-  <script>
-    const emailInput = document.getElementById('email');
-    const doneBtn = document.getElementById('doneBtn');
-    const successMsg = document.getElementById('successMsg');
+ <script>
+  const emailInput = document.getElementById('email');
+  const doneBtn = document.getElementById('doneBtn');
+  const successMsg = document.getElementById('successMsg');
 
-    emailInput.addEventListener('input', () => {
-      if (emailInput.value.trim() !== '') {
-        doneBtn.style.display = 'block';
-      } else {
-        doneBtn.style.display = 'none';
-        successMsg.style.display = 'none';
-      }
-    });
+  function isValidGmail(email) {
+    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return gmailPattern.test(email.trim());
+  }
 
-    doneBtn.addEventListener('click', () => {
-      successMsg.style.display = 'block';
-    });
-  </script>
+  emailInput.addEventListener('input', () => {
+    const email = emailInput.value.trim();
+    if (isValidGmail(email)) {
+      doneBtn.style.display = 'block';
+    } else {
+      doneBtn.style.display = 'none';
+      successMsg.style.display = 'none';
+    }
+  });
+
+  doneBtn.addEventListener('click', () => {
+    successMsg.style.display = 'block';
+  });
+ </script>
 </body>
 </html>

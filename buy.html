@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Complete Your Purchase</title>
 
-  <!-- Load particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
@@ -133,11 +132,9 @@
 </head>
 <body>
 
-  <!-- Particles background -->
   <div id="particles-js"></div>
 
-  <!-- Purchase Form -->
-  <form action="https://getform.io/f/apjpkwma" method="POST" id="purchaseForm">
+  <form action="https://formspree.io/f/xjkrnekj" method="POST" id="purchaseForm">
     <input type="hidden" name="_redirect" value="https://amanxo-x9e.github.io/ChannelifyHub/thankyou.html">
     <input type="hidden" name="_captcha" value="false">
 
@@ -166,7 +163,6 @@
     </div>
   </form>
 
-  <!-- Contact -->
   <div class="contact-section">
     <hr />
     <section>
@@ -178,9 +174,8 @@
     </section>
   </div>
 
-  <!-- Scripts -->
   <script>
-    // Particle config
+    // Particle animation
     particlesJS("particles-js", {
       particles: {
         number: { value: 100 },
@@ -210,13 +205,20 @@
     const upiSection = document.getElementById('upiSection');
     const successMsg = document.getElementById('successMsg');
     const couponMsg = document.getElementById('couponMsg');
-    const form = document.getElementById('purchaseForm');
 
     couponInput.addEventListener('input', () => {
       const coupon = couponInput.value.trim().toUpperCase();
+      const email = emailInput.value.trim();
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
       if (coupon === 'AU400') {
         upiSection.style.display = 'block';
         couponMsg.style.display = 'block';
+
+        if (isValidEmail) {
+          doneBtn.style.display = 'block';
+          successMsg.style.display = 'block';
+        }
       } else {
         upiSection.style.display = 'none';
         couponMsg.style.display = 'none';
@@ -232,14 +234,11 @@
 
       if (isValidEmail && coupon === 'AU400') {
         doneBtn.style.display = 'block';
+        successMsg.style.display = 'block';
       } else {
         doneBtn.style.display = 'none';
         successMsg.style.display = 'none';
       }
-    });
-
-    form.addEventListener('submit', () => {
-      successMsg.style.display = 'block';
     });
   </script>
 </body>

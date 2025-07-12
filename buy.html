@@ -67,6 +67,12 @@
       padding-top: 10px;
       display: none;
     }
+    .coupon-success {
+      color: #34d399;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      display: none;
+    }
     .upi-section {
       margin-top: 10px;
       display: none;
@@ -102,6 +108,7 @@
     <div>
       <label for="coupon">Enter coupon code:</label>
       <input type="text" id="coupon" placeholder="Apply your coupon" />
+      <p class="coupon-success" id="couponMsg">✅ ₹400 OFF applied! Final price: ₹4,100. Pay now to complete your purchase.</p>
     </div>
 
     <div>
@@ -132,13 +139,16 @@
     const doneBtn = document.getElementById('doneBtn');
     const upiSection = document.getElementById('upiSection');
     const successMsg = document.getElementById('successMsg');
+    const couponMsg = document.getElementById('couponMsg');
 
     couponInput.addEventListener('input', () => {
       const coupon = couponInput.value.trim().toUpperCase();
       if (coupon === 'AU400') {
         upiSection.style.display = 'block';
+        couponMsg.style.display = 'block';
       } else {
         upiSection.style.display = 'none';
+        couponMsg.style.display = 'none';
         doneBtn.style.display = 'none';
         successMsg.style.display = 'none';
       }

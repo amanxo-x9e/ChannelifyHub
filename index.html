@@ -52,21 +52,28 @@
       color: #10b981;
     }
 
+    /* Horizontal scrolling gallery with hidden scrollbar */
     .gallery {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
       gap: 20px;
       padding: 10px 0;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+    }
+
+    .gallery::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
 
     .gallery img {
-      width: 100%;
       max-width: 300px;
+      flex-shrink: 0;
       border-radius: 10px;
       border: 1px solid #30363d;
       object-fit: contain;
-      flex-shrink: 0;
       opacity: 0;
       transform: translateY(100px);
       transition: all 0.8s ease;
@@ -81,7 +88,6 @@
       text-align: center;
       margin-top: 30px;
     }
-
     .cta a {
       background: #3b82f6;
       color: white;
@@ -90,20 +96,19 @@
       text-decoration: none;
       font-size: 1rem;
     }
-
     .cta a:hover {
       background: #2563eb;
     }
 
+    /* Contact Section */
     .contact-section {
       text-align: center;
-      margin-top: 60px;
     }
     .contact-section hr {
       border: none;
       border-top: 1px solid #30363d;
+      margin: 50px auto 30px;
       width: 80%;
-      margin: 0 auto 20px;
     }
     .contact-section a {
       color: #3b82f6;
@@ -170,7 +175,7 @@
         }
       });
     }, {
-      threshold: 0.3
+      threshold: 0.5
     });
 
     images.forEach(img => observer.observe(img));

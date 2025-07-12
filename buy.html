@@ -158,7 +158,7 @@
       <div>
         <label for="coupon">Enter coupon code:</label>
         <input type="text" id="coupon" placeholder="Apply your coupon" />
-        <p class="coupon-success" id="couponMsg">✅ ₹400 OFF applied! Final price: ₹4,100. Pay now to complete your purchase.</p>
+        <p class="coupon-success" id="couponMsg">✅ ₹500 OFF applied! Final price: ₹4,000. Pay now to complete your purchase.</p>
       </div>
 
       <div>
@@ -220,7 +220,7 @@
 
     couponInput.addEventListener('input', () => {
       const coupon = couponInput.value.trim().toUpperCase();
-      if (coupon === 'AU400') {
+      if (coupon === 'AU500') {
         upiSection.style.display = 'block';
         couponMsg.style.display = 'block';
       } else {
@@ -236,7 +236,7 @@
       const coupon = couponInput.value.trim().toUpperCase();
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-      if (isValidEmail && coupon === 'AU400') {
+      if (isValidEmail && coupon === 'AU500') {
         doneBtn.style.display = 'block';
       } else {
         doneBtn.style.display = 'none';

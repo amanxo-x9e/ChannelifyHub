@@ -54,18 +54,19 @@
 
     .gallery {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      padding-top: 10px;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 0;
     }
 
     .gallery img {
       width: 100%;
-      max-width: 400px;
+      max-width: 300px;
       border-radius: 10px;
       border: 1px solid #30363d;
       object-fit: contain;
+      flex-shrink: 0;
       opacity: 0;
       transform: translateY(100px);
       transition: all 0.8s ease;
@@ -92,6 +93,21 @@
 
     .cta a:hover {
       background: #2563eb;
+    }
+
+    .contact-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .contact-section hr {
+      border: none;
+      border-top: 1px solid #30363d;
+      width: 80%;
+      margin: 0 auto 20px;
+    }
+    .contact-section a {
+      color: #3b82f6;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -133,6 +149,15 @@
     </div>
   </section>
 
+  <section class="section contact-section">
+    <hr>
+    <h2>📬 Contact Us</h2>
+    <p>If you have any questions, feel free to email us directly:</p>
+    <p style="margin-top: 10px;">
+      📧 <a href="mailto:businessamanxo@gmail.com">businessamanxo@gmail.com</a>
+    </p>
+  </section>
+
   <script>
     const images = document.querySelectorAll('.gallery img');
 
@@ -145,19 +170,10 @@
         }
       });
     }, {
-      threshold: 0.5
+      threshold: 0.3
     });
 
     images.forEach(img => observer.observe(img));
   </script>
 </body>
 </html>
-
-<section class="section contact-section" style="text-align: center;">
-  <hr style="border: none; border-top: 1px solid #30363d; margin: 50px auto 30px; width: 80%;">
-  <h2>📬 Contact Us</h2>
-  <p>If you have any questions, feel free to email us directly:</p>
-  <p style="margin-top: 10px;">
-    📧 <a href="mailto:businessamanxo@gmail.com" style="color: #3b82f6;">businessamanxo@gmail.com</a>
-  </p>
-</section>

@@ -9,7 +9,6 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
-    /* Star background container */
     #particles-js {
       position: fixed;
       width: 100%;
@@ -74,7 +73,7 @@
       margin-bottom: 10px;
       font-size: 1rem;
       box-sizing: border-box;
-      height: 40px; /* Fixed height */
+      height: 40px;
     }
 
     button {
@@ -87,7 +86,7 @@
       font-size: 1rem;
       cursor: pointer;
       display: none;
-      height: 40px; /* Fixed height to match input */
+      height: 40px;
     }
 
     .success-message {
@@ -137,30 +136,35 @@
   <!-- Particles background -->
   <div id="particles-js"></div>
 
-  <!-- Content -->
-  <div class="container">
-    <div class="emoji">🔥</div>
-    <h1>Complete Your Purchase</h1>
+  <!-- Purchase Form -->
+  <form action="https://getform.io/f/apjpkwma" method="POST" id="purchaseForm">
+    <input type="hidden" name="_redirect" value="https://amanxo-x9e.github.io/ChannelifyHub/thankyou.html">
+    <input type="hidden" name="_captcha" value="false">
 
-    <div class="upi-section" id="upiSection">
-      <p>UPI ID: <code>9012775446@fam</code></p>
-    </div>
+    <div class="container">
+      <div class="emoji">🔥</div>
+      <h1>Complete Your Purchase</h1>
 
-    <div>
-      <label for="coupon">Enter coupon code:</label>
-      <input type="text" id="coupon" placeholder="Apply your coupon" />
-      <p class="coupon-success" id="couponMsg">✅ ₹400 OFF applied! Final price: ₹4,100. Pay now to complete your purchase.</p>
-    </div>
+      <div class="upi-section" id="upiSection">
+        <p>UPI ID: <code>9012775446@fam</code></p>
+      </div>
 
-    <div>
-      <label for="email">Enter your email:</label>
-      <input type="email" id="email" placeholder="you@example.com" />
-      <button id="doneBtn">Done</button>
-      <p class="success-message" id="successMsg">
-        📩 Tip: Open your Gmail app and look for a message from us — your channel ownership details are inside.
-      </p>
+      <div>
+        <label for="coupon">Enter coupon code:</label>
+        <input type="text" id="coupon" placeholder="Apply your coupon" />
+        <p class="coupon-success" id="couponMsg">✅ ₹400 OFF applied! Final price: ₹4,100. Pay now to complete your purchase.</p>
+      </div>
+
+      <div>
+        <label for="email">Enter your email:</label>
+        <input type="email" name="email" id="email" placeholder="you@example.com" required />
+        <button type="submit" id="doneBtn">Done</button>
+        <p class="success-message" id="successMsg">
+          📩 Tip: Open your Gmail app and look for a message from us — your channel ownership details are inside.
+        </p>
+      </div>
     </div>
-  </div>
+  </form>
 
   <!-- Contact -->
   <div class="contact-section">
@@ -200,13 +204,13 @@
       retina_detect: true
     });
 
-    // Form logic
     const couponInput = document.getElementById('coupon');
     const emailInput = document.getElementById('email');
     const doneBtn = document.getElementById('doneBtn');
     const upiSection = document.getElementById('upiSection');
     const successMsg = document.getElementById('successMsg');
     const couponMsg = document.getElementById('couponMsg');
+    const form = document.getElementById('purchaseForm');
 
     couponInput.addEventListener('input', () => {
       const coupon = couponInput.value.trim().toUpperCase();
@@ -234,13 +238,9 @@
       }
     });
 
-    doneBtn.addEventListener('click', () => {
+    form.addEventListener('submit', () => {
       successMsg.style.display = 'block';
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 5000);
     });
   </script>
 </body>
 </html>
-
